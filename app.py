@@ -8,14 +8,14 @@ from visualization import (
     plot_returns_bar_chart,
     plot_comparison_chart
 )
-from liveBTC import live_btc_chart, fetch_current_btc_price
+# from liveBTC import live_btc_chart, fetch_current_btc_price
 import time
 
 
 st.set_page_config(layout="wide")
 
-if "show_live_chart" not in st.session_state:
-    st.session_state.show_live_chart = True  # Show live BTC chart by default
+# if "show_live_chart" not in st.session_state:
+#     st.session_state.show_live_chart = True  # Show live BTC chart by default
 
 st.markdown("<h1 style='text-align: center;'>암호화폐 거래 전략 벡테스팅</h1>", unsafe_allow_html=True)
 
@@ -47,10 +47,10 @@ with st.sidebar:
 price_placeholder = st.empty()
 
 
-if st.session_state.show_live_chart:
-    chart = live_btc_chart()
-    if chart:
-        st.plotly_chart(chart, use_container_width=True)
+# if st.session_state.show_live_chart:
+#     chart = live_btc_chart()
+#     if chart:
+#         st.plotly_chart(chart, use_container_width=True)
 
 
 
