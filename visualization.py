@@ -49,7 +49,8 @@ def plot_returns_bar_chart(trades):
 
 def plot_comparison_chart(backtest_equity_curve, historical_data):
     """
-    Plots a comparison graph between backtest performance and buy-and-hold strategy.
+    Plots a comparison graph between backtest performance and buy-and-hold strategy
+    and displays percentage changes for both.
 
     Parameters:
         backtest_equity_curve (pd.DataFrame): Backtest equity curve.
@@ -57,7 +58,14 @@ def plot_comparison_chart(backtest_equity_curve, historical_data):
     """
     # Calculate Buy & Hold equity curve
     start_price = historical_data["Close"].iloc[0]
+    end_price = historical_data["Close"].iloc[-1]
     historical_data["BuyHoldEquity"] = historical_data["Close"] / start_price * backtest_equity_curve["Equity"].iloc[0]
+
+    # Calculate percentage changes
+    buy_hold_percent_change = ((end_price - start_price) / start_price) * 100
+    backtest_start_equity = backtest_equity_curve["Equity"].iloc[0]
+    backtest_end_equity = backtest_equity_curve["Equity"].iloc[-1]
+    backtest_percent_change = ((backtest_end_equity - backtest_start_equity) / backtest_start_equity) * 100
 
     # Create the comparison graph
     fig = go.Figure()
@@ -86,7 +94,22 @@ def plot_comparison_chart(backtest_equity_curve, historical_data):
         xaxis_title="시간",
         yaxis_title="자산 (USD)",
         template="plotly_white",
-        height=600
+        height=600,
+        annotations=[
+            dict(
+                x=0.5,
+                y=1.15,
+                xref="paper",
+                yref="paper",
+                text=(
+                    f"<b>Buy & Hold:</b> {buy_hold_percent_change:.2f}%<br>"
+                    f"<b>Backtest Strategy:</b> {backtest_percent_change:.2f}%"
+                ),
+                showarrow=False,
+                font=dict(size=12),
+                align="center"
+            )
+        ]
     )
 
     st.plotly_chart(fig, use_container_width=True)
