@@ -106,7 +106,7 @@ def plot_comparison_chart(backtest_equity_curve, historical_data):
                     f"<b>Backtest Strategy:</b> {backtest_percent_change:.2f}%"
                 ),
                 showarrow=False,
-                font=dict(size=12),
+                font=dict(size=16),
                 align="center"
             )
         ]
