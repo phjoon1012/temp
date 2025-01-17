@@ -102,8 +102,8 @@ def plot_comparison_chart(backtest_equity_curve, historical_data):
                 xref="paper",
                 yref="paper",
                 text=(
-                    f"<b>Buy & Hold:</b> {buy_hold_percent_change:.2f}%<br>"
-                    f"<b>Backtest Strategy:</b> {backtest_percent_change:.2f}%"
+                    f"<b>매수 후 보류:</b> {buy_hold_percent_change:.2f}%<br>"
+                    f"<b>백테스팅 전략:</b> {backtest_percent_change:.2f}%"
                 ),
                 showarrow=False,
                 font=dict(size=16),
